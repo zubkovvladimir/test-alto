@@ -1,0 +1,21 @@
+.btn {
+  min-height: 55px;
+  padding: 12px 29px;
+  font-size: 0.875rem;
+  font-weight: normal;
+  z-index: 100;
+
+  &--pagination {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+  }
+
+  &--pagination-btn-more {
+    height: 40px;
+    min-height: 0;
+    padding: 12px 21px;
+  }
+}
