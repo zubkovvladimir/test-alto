@@ -1,21 +1,36 @@
 .btn {
-  min-height: 55px;
-  padding: 12px 29px;
-  font-size: 0.875rem;
-  font-weight: normal;
-  z-index: 100;
+  border: none;
+  cursor: pointer;
+  font-weight: inherit;
 
-  &--pagination {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
+  &--secondary {
+    border-radius: 100px;
+    width: 32px;
+    height: 32px;
+
     padding: 0;
+    background-color: var(--blue);
+    transition: var(--transition);
+
+    color: var(--black);
+
+    &:hover:not(:disabled) {
+      color: var(--blue-3);
+      background-color: var(--white-1);
+    }
+
+    &:disabled {
+      cursor: auto;
+      color: var(--gray);
+    }
+
+    &.--active {
+      background-color: var(--blue-2);
+      color: var(--white);
+    }
   }
 
-  &--pagination-btn-more {
-    height: 40px;
-    min-height: 0;
-    padding: 12px 21px;
+  &--full-width {
+    width: 100%;
   }
 }

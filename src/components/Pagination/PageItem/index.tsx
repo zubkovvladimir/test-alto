@@ -11,6 +11,8 @@ interface PageItemProps {
 }
 
 export const PageItem: React.FC<PageItemProps> = ({ pageControlValue, currentPage, onChange }) => {
+  const isCurrentPage = pageControlValue === currentPage;
+
   const onPageClick = (item: number | string) => {
     if (typeof item === 'number') {
       onChange(item);
@@ -18,12 +20,13 @@ export const PageItem: React.FC<PageItemProps> = ({ pageControlValue, currentPag
   };
 
   return (
-    <li className={classes['pagination-item']}>
+    <li className={classes['pagination__item']}>
       <Button
-        disabled={pageControlValue === currentPage}
+        disabled={isCurrentPage}
+        isActive={isCurrentPage}
         onClick={() => onPageClick(pageControlValue)}
         size="pagination"
-        variant="outlined-gray"
+        variant="secondary"
       >
         {pageControlValue}
       </Button>

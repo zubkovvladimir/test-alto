@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import cx from 'classnames';
+import { Button } from 'components/Button';
+import { paginationChunk } from 'constants/other';
 import { PageMeta } from 'interfaces/common.interface';
-import { getPageCount, getPaginationWithDots } from 'utils/pages';
+import { getPagination } from 'utils/pages';
 
 import { PageItem } from './PageItem';
 import classes from './Pagination.module.scss';
-import { Button } from 'components/Button';
 
 interface PaginationProps {
   meta: PageMeta;
@@ -14,52 +15,64 @@ interface PaginationProps {
 }
 
 export const Pagination: React.FC<PaginationProps> = ({ meta, onChange }) => {
-  const pageTotalCount = getPageCount(meta.total, meta.perPage);
-  const pagesArray = getPaginationWithDots(meta.currentPage, pageTotalCount);
+  const [shift, setShift] = useState(0);
+
+  const pages = getPagination(meta.lastPage, paginationChunk);
+
   const prevPage = meta.currentPage - 4 > 1 ? meta.currentPage - 4 : 1;
   const nextPage = meta.currentPage + 4 < meta.lastPage ? meta.currentPage + 4 : meta.lastPage;
 
-  const getKeyValueForDots = (item: number | string) => (item === '...' ? Math.random() : item);
+  const isMoreThanOnePage = pages[0].length >= 2;
+  const isLastChunk = shift + 1 === pages.length;
+  const isFirstChunk = !shift;
 
   return (
-    <div className={classes['pagination-wrap']}>
+    <div className={classes['pagination__wrap']}>
       <div className={classes.pagination__prev}>
-        <Button onClick={() => onChange(prevPage)}>Назад</Button>
+        <Button
+          disabled={isFirstChunk}
+          fullWidth
+          onClick={() => {
+            onChange(prevPage);
+            setShift((prev) => (prev - 1 >= 0 ? prev - 1 : prev));
+          }}
+          size="pagination"
+          variant="secondary"
+        >
+          Назад
+        </Button>
       </div>
 
-      {pagesArray.length >= 2 && (
+      {isMoreThanOnePage && (
         <ul className={cx(classes.pagination, 'd-f')}>
-          {meta.currentPage > meta.lastPage - 4 && (
-            <PageItem
-              currentPage={meta.currentPage}
-              key={getKeyValueForDots('...')}
-              onChange={onChange}
-              pageControlValue="..."
-            />
-          )}
+          {!isFirstChunk && <PageItem currentPage={meta.currentPage} onChange={onChange} pageControlValue="..." />}
 
-          {pagesArray.map((pageNumber) => (
+          {pages[shift].map((pageNumber) => (
             <PageItem
               currentPage={meta.currentPage}
-              key={getKeyValueForDots(pageNumber)}
+              key={pageNumber}
               onChange={onChange}
               pageControlValue={pageNumber}
             />
           ))}
 
-          {meta.currentPage < 5 && (
-            <PageItem
-              currentPage={meta.currentPage}
-              key={getKeyValueForDots('...')}
-              onChange={onChange}
-              pageControlValue="..."
-            />
-          )}
+          {!isLastChunk && <PageItem currentPage={meta.currentPage} onChange={onChange} pageControlValue="..." />}
         </ul>
       )}
 
       <div className={classes.pagination__next}>
-        <Button onClick={() => onChange(nextPage)}>Вперед</Button>
+        <Button
+          disabled={isLastChunk}
+          fullWidth
+          onClick={() => {
+            onChange(nextPage);
+            setShift((prev) => (prev + 1 < pages.length ? prev + 1 : prev));
+          }}
+          size="pagination"
+          variant="secondary"
+        >
+          Вперед
+        </Button>
       </div>
     </div>
   );
