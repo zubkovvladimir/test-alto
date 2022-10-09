@@ -1,5 +1,5 @@
-import { exampleEndpoints as example } from 'api/endpoints/example';
+import { productsEndpoints as products } from 'api/endpoints/products';
 
 export const endpoints = {
-  example,
+  products,
 };

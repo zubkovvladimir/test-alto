@@ -1,4 +1,4 @@
-export enum ValidationErrors {
-  Required = 'Поле обязательно для заполнения',
-  NotNumber = 'Должно быть числом',
+export enum ApiErrors {
+  NotFound = 'Удаленный ресурс не найден',
+  SomethingGoesWrong = 'Что-то пошло не так',
 }
