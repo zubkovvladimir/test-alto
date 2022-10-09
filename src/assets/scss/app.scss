@@ -1,12 +1,33 @@
 @import '~reset.css/reset.css';
 @import '~normalize.css/normalize.css';
 
-@import '~antd/dist/antd.css';
-
 @import 'fonts';
 @import 'variables';
 @import 'mixins';
 
+:root {
+  // fonts
+  --default-font: 'Roboto', Arial, sans-serif;
+  --font-size-default-desktop: 12px;
+
+  // colors
+  --blue: #eff5fe;
+  --blue-2: #336ec6;
+  --blue-3: #23527c;
+
+  --black: #4f545f;
+
+  --gray: #9faaba;
+
+  --white: #ffffff;
+  --white-1: #eee;
+
+  // transitions
+  --transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--default-font);
+  font-weight: 400;
+  font-size: var(--font-size-default-desktop);
 }
