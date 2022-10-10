@@ -14,19 +14,49 @@
   --blue: #eff5fe;
   --blue-2: #336ec6;
   --blue-3: #23527c;
+  --blue-4: #a6c3ee;
+  --blue-5: #6e91c6;
+  --blue-6: #4e89e2;
 
   --black: #4f545f;
+  --black-1: #333;
 
   --gray: #9faaba;
+  --gray-1: #e6e6e6;
+
+  --green: #76cb22;
 
   --white: #ffffff;
   --white-1: #eee;
+  --white-2: #e4ecf9;
 
   // transitions
-  --transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  --transition: 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+  --transition-2: linear 0.2s;
+
+  // shadow
+  --box-shadow: 0px 3px 6px #dfeafc;
+  --box-shadow-1: 0px 6px 12px #d5e0ef;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }
 
 body {
+  min-width: 320px;
+  color: var(--black);
   font-family: var(--default-font);
   font-weight: 400;
   font-size: var(--font-size-default-desktop);

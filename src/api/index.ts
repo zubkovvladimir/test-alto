@@ -1,5 +1,5 @@
-import { APIExample as example } from './methods/example';
+import { productsApi as products } from './methods/products';
 
 export const api = {
-  example,
+  products,
 };
