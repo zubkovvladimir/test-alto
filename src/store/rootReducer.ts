@@ -1,5 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-export const rootReducer = combineReducers({});
+import { productsReducer as products } from './products/reducer';
+
+export const rootReducer = combineReducers({ products });
 
 export type RootState = ReturnType<typeof rootReducer>;

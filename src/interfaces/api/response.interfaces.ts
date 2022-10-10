@@ -1,11 +1,15 @@
 export interface ParamsFetchAll {
-  page: number;
+  currentPage: number;
 }
 
-export interface IResponseAll<T> {
-  success?: boolean;
+export interface ReturnFetchAll<T> {
+  totalCount: number;
+  products: T[];
+}
+
+export interface IResponseWithMeta<T> {
   errorMessage?: string;
-  data?: T[];
+  data?: ReturnFetchAll<T>;
 }
 
-export type ApiResponseAll<T> = Promise<IResponseAll<T>>;
+export type ApiResponseWithMeta<T> = Promise<IResponseWithMeta<T>>;

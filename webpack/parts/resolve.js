@@ -15,6 +15,7 @@ function getResolve() {
       components: path.resolve(__dirname, '../../src/components'),
       constants: path.resolve(__dirname, '../../src/constants'),
       hocs: path.resolve(__dirname, '../../src/hocs'),
+      hooks: path.resolve(__dirname, '../../src/hooks'),
       interfaces: path.resolve(__dirname, '../../src/interfaces'),
       layouts: path.resolve(__dirname, '../../src/layouts'),
       pages: path.resolve(__dirname, '../../src/pages'),
