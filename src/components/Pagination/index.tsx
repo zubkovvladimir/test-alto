@@ -28,52 +28,54 @@ export const Pagination: React.FC<PaginationProps> = ({ meta, onChange }) => {
 
   return (
     <div className={classes['pagination__wrap']}>
-      <div className={classes.pagination__prev}>
-        <Button
-          disabled={isFirstChunk}
-          fullWidth
-          onClick={() => {
-            onChange(prevPage);
-            setShift((prev) => (prev - 1 >= 0 ? prev - 1 : prev));
-          }}
-          size="pagination"
-          variant="secondary"
-        >
-          Назад
-        </Button>
-      </div>
-
       {isMoreThanOnePage && (
-        <ul className={cx(classes.pagination, 'd-f')}>
-          {!isFirstChunk && <PageItem currentPage={meta.currentPage} onChange={onChange} pageControlValue="..." />}
+        <>
+          <div className={classes.pagination__prev}>
+            <Button
+              disabled={isFirstChunk}
+              fullWidth
+              onClick={() => {
+                onChange(prevPage);
+                setShift((prev) => (prev - 1 >= 0 ? prev - 1 : prev));
+              }}
+              size="pagination"
+              variant="secondary"
+            >
+              Назад
+            </Button>
+          </div>
 
-          {pages[shift].map((pageNumber) => (
-            <PageItem
-              currentPage={meta.currentPage}
-              key={pageNumber}
-              onChange={onChange}
-              pageControlValue={pageNumber}
-            />
-          ))}
+          <ul className={cx(classes.pagination, 'd-f')}>
+            {!isFirstChunk && <PageItem currentPage={meta.currentPage} onChange={onChange} pageControlValue="..." />}
 
-          {!isLastChunk && <PageItem currentPage={meta.currentPage} onChange={onChange} pageControlValue="..." />}
-        </ul>
+            {pages[shift].map((pageNumber) => (
+              <PageItem
+                currentPage={meta.currentPage}
+                key={pageNumber}
+                onChange={onChange}
+                pageControlValue={pageNumber}
+              />
+            ))}
+
+            {!isLastChunk && <PageItem currentPage={meta.currentPage} onChange={onChange} pageControlValue="..." />}
+          </ul>
+
+          <div className={classes.pagination__next}>
+            <Button
+              disabled={isLastChunk}
+              fullWidth
+              onClick={() => {
+                onChange(nextPage);
+                setShift((prev) => (prev + 1 < pages.length ? prev + 1 : prev));
+              }}
+              size="pagination"
+              variant="secondary"
+            >
+              Вперед
+            </Button>
+          </div>
+        </>
       )}
-
-      <div className={classes.pagination__next}>
-        <Button
-          disabled={isLastChunk}
-          fullWidth
-          onClick={() => {
-            onChange(nextPage);
-            setShift((prev) => (prev + 1 < pages.length ? prev + 1 : prev));
-          }}
-          size="pagination"
-          variant="secondary"
-        >
-          Вперед
-        </Button>
-      </div>
     </div>
   );
 };

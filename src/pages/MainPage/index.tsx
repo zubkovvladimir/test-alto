@@ -17,7 +17,7 @@ const MainPage: FC = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const products = useTypedSelector((state) => state.products.items);
+  const { items: products, meta } = useTypedSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(fetchProducts({ currentPage }));
@@ -69,7 +69,7 @@ const MainPage: FC = () => {
 
       <div className={classes.pagination}>
         <Pagination
-          meta={{ currentPage, lastPage: 22, perPage: 4, total: 88 }}
+          meta={{ currentPage, lastPage: meta.lastPage, perPage: 4, total: 88 }}
           onChange={(currentPage) => setCurrentPage(currentPage)}
         />
       </div>
